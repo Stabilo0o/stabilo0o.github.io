@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nova Bot — Dashboard</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Inter, Arial, sans-serif;
+}
+
+:root {
+    --bg: #080b10;
+    --panel: #10151d;
+    --panel2: #151b24;
+    --border: rgba(255,255,255,.08);
+    --text: #f5f7fa;
+    --muted: #8c96a3;
+    --green: #25d366;
+    --green2: #19b957;
+    --danger: #ff4d67;
+    --yellow: #ffc857;
+    --blue: #5b9cff;
+}
+
+body {
+    background:
+        radial-gradient(circle at 20% 0%, rgba(37,211,102,.13), transparent 28%),
+        radial-gradient(circle at 90% 80%, rgba(91,156,255,.08), transparent 25%),
+        var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    height: 100vh;
+    background: rgba(10,14,19,.92);
+    border-right: 1px solid var(--border);
+    padding: 24px 16px;
+    z-index: 100;
+    backdrop-filter: blur(20px);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 5px 10px 30px;
+}
+
+.logo-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg,#25d366,#128c7e);
+    box-shadow: 0 0 25px rgba(37,211,102,.25);
+    font-size: 22px;
+}
+
+.logo h2 {
+    font-size: 20px;
+}
+
+.logo span {
+    color: var(--green);
+}
+
+.nav-title {
+    color: #59636f;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 18px 10px 8px;
+}
+
+.nav-item {
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    padding: 12px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    text-align: left;
+    margin-bottom: 3px;
+    transition: .2s;
+    font-size: 14px;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background: rgba(37,211,102,.1);
+    color: var(--green);
+}
+
+.sidebar-bottom {
+    position: absolute;
+    bottom: 20px;
+    left: 16px;
+    right: 16px;
+}
+
+.bot-status {
+    background: rgba(37,211,102,.07);
+    border: 1px solid rgba(37,211,102,.15);
+    padding: 14px;
+    border-radius: 13px;
+}
+
+.status-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 10px var(--green);
+}
+
+.status-text {
+    color: var(--green);
+}
+
+.status-small {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 6px;
+}
+
+/* ================= MAIN ================= */
+
+.main {
+    margin-left: 250px;
+    min-height: 100vh;
+    padding: 35px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.page-title h1 {
+    font-size: 29px;
+}
+
+.page-title p {
+    color: var(--muted);
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg,#25d366,#128c7e);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.profile-info strong {
+    font-size: 14px;
+}
+
+.profile-info small {
+    display: block;
+    color: var(--muted);
+    margin-top: 3px;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+    background:
+        linear-gradient(135deg,rgba(37,211,102,.13),rgba(37,211,102,.02)),
+        var(--panel);
+    border: 1px solid rgba(37,211,102,.15);
+    border-radius: 20px;
+    padding: 35px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+.hero::after {
+    content: "N";
+    position: absolute;
+    right: 45px;
+    top: -50px;
+    font-size: 260px;
+    font-weight: 900;
+    color: rgba(37,211,102,.035);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.online-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--green);
+    background: rgba(37,211,102,.1);
+    border: 1px solid rgba(37,211,102,.18);
+    padding: 7px 12px;
+    border-radius: 50px;
+    font-size: 12px;
+    margin-bottom: 18px;
+}
+
+.hero h2 {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.hero h2 span {
+    color: var(--green);
+}
+
+.hero p {
+    color: var(--muted);
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+/* ================= STATS ================= */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 15px;
+    margin-bottom: 35px;
+}
+
+.stat {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px;
+}
+
+.stat-top {
+    display: flex;
+    justify-content: space-between;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.stat-icon {
+    font-size: 19px;
+}
+
+.stat h3 {
+    margin-top: 13px;
+    font-size: 25px;
+}
+
+.stat .green {
+    color: var(--green);
+}
+
+.stat .yellow {
+    color: var(--yellow);
+}
+
+.stat .blue {
+    color: var(--blue);
+}
+
+/* ================= CONTENT ================= */
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.section-header h2 {
+    font-size: 20px;
+}
+
+.search {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    color: white;
+    padding: 11px 14px;
+    border-radius: 10px;
+    outline: none;
+    width: 230px;
+}
+
+.search:focus {
+    border-color: rgba(37,211,102,.5);
+}
+
+.search::placeholder {
+    color: #626d79;
+}
+
+/* ================= COMMAND CATEGORIES ================= */
+
+.categories {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 14px;
+}
+
+.category {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.category-header {
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.category-header:hover {
+    background: rgba(255,255,255,.025);
+}
+
+.category-left {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.category-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(37,211,102,.09);
+    font-size: 18px;
+}
+
+.category-title strong {
+    display: block;
+    font-size: 14px;
+}
+
+.category-title small {
+    display: block;
+    color: var(--muted);
+    margin-top: 4px;
+    font-size: 11px;
+}
+
+.arrow {
+    color: var(--muted);
+    transition: .2s;
+}
+
+.category.open .arrow {
+    transform: rotate(180deg);
+}
+
+.commands {
+    display: none;
+    border-top: 1px solid var(--border);
+}
+
+.category.open .commands {
+    display: block;
+}
+
+.command {
+    padding: 14px 18px;
+    border-bottom: 1px solid rgba(255,255,255,.04);
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.command:last-child {
+    border-bottom: none;
+}
+
+.command code {
+    color: var(--green);
+    font-family: Consolas, monospace;
+    font-size: 13px;
+}
+
+.command-description {
+    color: var(--muted);
+    font-size: 12px;
+    text-align: right;
+}
+
+/* ================= INFO BOX ================= */
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.info-box {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 23px;
+}
+
+.info-box h3 {
+    margin-bottom: 12px;
+}
+
+.info-box p {
+    color: var(--muted);
+    line-height: 1.6;
+    font-size: 13px;
+}
+
+.badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 15px;
+}
+
+.badge {
+    padding: 7px 10px;
+    border-radius: 8px;
+    background: rgba(37,211,102,.08);
+    color: var(--green);
+    font-size: 11px;
+}
+
+/* ================= MOBILE ================= */
+
+.mobile-menu {
+    display: none;
+}
+
+@media(max-width:1000px) {
+    .stats {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .categories {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width:750px) {
+
+    .sidebar {
+        transform: translateX(-100%);
+        transition: .25s;
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+    }
+
+    .main {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .mobile-menu {
+        display: block;
+        border: none;
+        background: var(--panel);
+        color: white;
+        padding: 10px 13px;
+        border-radius: 9px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    .topbar {
+        gap: 15px;
+    }
+
+    .profile {
+        display: none;
+    }
+
+    .hero {
+        padding: 25px;
+    }
+
+    .hero h2 {
+        font-size: 28px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .search {
+        width: 100%;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width:450px) {
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .command {
+        flex-direction: column;
+    }
+
+    .command-description {
+        text-align: left;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="logo">
+        <div class="logo-icon">N</div>
+
+        <h2>Nova<span>Bot</span></h2>
+    </div>
+
+    <div class="nav-title">Dashboard</div>
+
+    <button class="nav-item active" onclick="scrollToTop()">
+        ◈ &nbsp; Übersicht
+    </button>
+
+    <button class="nav-item" onclick="goCommands()">
+        ⌘ &nbsp; Commands
+    </button>
+
+    <div class="nav-title">Kategorien</div>
+
+    <button class="nav-item" onclick="openCategory('account')">
+        👤 &nbsp; Account
+    </button>
+
+    <button class="nav-item" onclick="openCategory('economy')">
+        💰 &nbsp; Economy
+    </button>
+
+    <button class="nav-item" onclick="openCategory('games')">
+        🎮 &nbsp; Games
+    </button>
+
+    <button class="nav-item" onclick="openCategory('fun')">
+        😂 &nbsp; Fun
+    </button>
+
+    <button class="nav-item" onclick="openCategory('info')">
+        📊 &nbsp; Info
+    </button>
+
+    <button class="nav-item" onclick="openCategory('owner')">
+        👑 &nbsp; Owner
+    </button>
+
+    <button class="nav-item" onclick="openCategory('mod')">
+        🛡️ &nbsp; Moderation
+    </button>
+
+    <button class="nav-item" onclick="openCategory('system')">
+        ⚙️ &nbsp; System
+    </button>
+
+    <div class="sidebar-bottom">
+
+        <div class="bot-status">
+
+            <div class="status-row">
+                <div class="status-dot"></div>
+                <span class="status-text">Bot Online</span>
+            </div>
+
+            <div class="status-small">
+                Nova Bot • v1.0.0
+            </div>
+
+        </div>
+
+    </div>
+
+</aside>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+    <div class="topbar">
+
+        <button class="mobile-menu" onclick="toggleSidebar()">☰</button>
+
+        <div class="page-title">
+            <h1>Dashboard</h1>
+            <p>Willkommen im Nova Bot Dashboard.</p>
+        </div>
+
+        <div class="profile">
+
+            <div class="profile-info">
+                <strong>Nova Owner</strong>
+                <small>Bot Owner</small>
+            </div>
+
+            <div class="avatar">N</div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= HERO ================= -->
+
+    <div class="hero">
+
+        <div class="hero-content">
+
+            <div class="online-badge">
+                <span class="status-dot"></span>
+                NOVA BOT IST ONLINE
+            </div>
+
+            <h2>
+                Willkommen bei <span>Nova Bot</span>
+            </h2>
+
+            <p>
+                Ein moderner WhatsApp-Bot für Moderation,
+                Economy, Games, Fun und Gruppenverwaltung.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= STATS ================= -->
+
+    <div class="stats">
+
+        <div class="stat">
+
+            <div class="stat-top">
+                <span>Status</span>
+                <span class="stat-icon">●</span>
+            </div>
+
+            <h3 class="green">Online</h3>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-top">
+                <span>Commands</span>
+                <span class="stat-icon">⌘</span>
+            </div>
+
+            <h3>40+</h3>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-top">
+                <span>Version</span>
+                <span class="stat-icon">⚡</span>
+            </div>
+
+            <h3 class="blue">1.0.0</h3>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-top">
+                <span>Uptime</span>
+                <span class="stat-icon">◷</span>
+            </div>
+
+            <h3 class="yellow">99.9%</h3>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= COMMANDS ================= -->
+
+    <div id="commands-section">
+
+        <div class="section-header">
+
+            <div>
+                <h2>Command Center</h2>
+            </div>
+
+            <input
+                class="search"
+                id="search"
+                type="text"
+                placeholder="Command suchen..."
+                oninput="searchCommands()"
+            >
+
+        </div>
+
+
+        <div class="categories">
+
+
+            <!-- ACCOUNT -->
+
+            <div class="category" id="account">
+
+                <div class="category-header" onclick="toggleCategory(this)">
+
+                    <div class="category-left">
+
+                        <div class="category-icon">👤</div>
+
+                        <div class="category-title">
+                            <strong>Account</strong>
+                            <small>Benutzerverwaltung</small>
+                        </div>
+
+                    </div>
+
+                    <span class="arrow">⌄</span>
+
+                </div>
+
+                <div class="commands">
+
+                    <div class="command">
+                        <code>/register name</code>
+                        <span class="command-description">Account erstellen</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/me</code>
+                        <span class="command-description">Account anzeigen</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/delme accept</code>
+                        <span class="command-description">Account löschen</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/resetme accept</code>
+                        <span class="command-description">Account zurücksetzen</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/afk Grund</code>
+                        <span class="command-description">AFK-Status setzen</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/dsgvo</code>
+                        <span class="command-description">Datenschutz anzeigen</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/dsgvo accept</code>
+                        <span class="command-description">Datenschutz akzeptieren</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ECONOMY -->
+
+            <div class="category" id="economy">
+
+                <div class="category-header" onclick="toggleCategory(this)">
+
+                    <div class="category-left">
+
+                        <div class="category-icon">💰</div>
+
+                        <div class="category-title">
+                            <strong>Economy</strong>
+                            <small>Coins & Belohnungen</small>
+                        </div>
+
+                    </div>
+
+                    <span class="arrow">⌄</span>
+
+                </div>
+
+                <div class="commands">
+
+                    <div class="command">
+                        <code>/coin</code>
+                        <span class="command-description">Coins anzeigen</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/daily</code>
+                        <span class="command-description">30–100 Coins</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/work</code>
+                        <span class="command-description">10–50 Coins</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/level</code>
+                        <span class="command-description">Level anzeigen</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- GAMES -->
+
+            <div class="category" id="games">
+
+                <div class="category-header" onclick="toggleCategory(this)">
+
+                    <div class="category-left">
+
+                        <div class="category-icon">🎮</div>
+
+                        <div class="category-title">
+                            <strong>Games</strong>
+                            <small>Spielen & Coins gewinnen</small>
+                        </div>
+
+                    </div>
+
+                    <span class="arrow">⌄</span>
+
+                </div>
+
+                <div class="commands">
+
+                    <div class="command">
+                        <code>/dice Betrag</code>
+                        <span class="command-description">Würfel-Battle</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/flipbattle kopf/zahl</code>
+                        <span class="command-description">Münzwurf-Battle</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/slots Betrag</code>
+                        <span class="command-description">Slots spielen</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/gamble 1-5</code>
+                        <span class="command-description">Gamble</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/roll</code>
+                        <span class="command-description">Zufallswürfel</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/flip</code>
+                        <span class="command-description">Münze werfen</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FUN -->
+
+            <div class="category" id="fun">
+
+                <div class="category-header" onclick="toggleCategory(this)">
+
+                    <div class="category-left">
+
+                        <div class="category-icon">😂</div>
+
+                        <div class="category-title">
+                            <strong>Fun</strong>
+                            <small>Unterhaltung</small>
+                        </div>
+
+                    </div>
+
+                    <span class="arrow">⌄</span>
+
+                </div>
+
+                <div class="commands">
+
+                    <div class="command">
+                        <code>/roast @user</code>
+                        <span class="command-description">Roast</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/joke</code>
+                        <span class="command-description">Witz</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/8ball Frage</code>
+                        <span class="command-description">Magic 8-Ball</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- INFO -->
+
+            <div class="category" id="info">
+
+                <div class="category-header" onclick="toggleCategory(this)">
+
+                    <div class="category-left">
+
+                        <div class="category-icon">📊</div>
+
+                        <div class="category-title">
+                            <strong>Info</strong>
+                            <small>Statistiken & Level</small>
+                        </div>
+
+                    </div>
+
+                    <span class="arrow">⌄</span>
+
+                </div>
+
+                <div class="commands">
+
+                    <div class="command">
+                        <code>/level</code>
+                        <span class="command-description">Dein Level</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/stats</code>
+                        <span class="command-description">Bot-Statistiken</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- OWNER -->
+
+            <div class="category" id="owner">
+
+                <div class="category-header" onclick="toggleCategory(this)">
+
+                    <div class="category-left">
+
+                        <div class="category-icon">👑</div>
+
+                        <div class="category-title">
+                            <strong>Owner</strong>
+                            <small>Nur für den Owner</small>
+                        </div>
+
+                    </div>
+
+                    <span class="arrow">⌄</span>
+
+                </div>
+
+                <div class="commands">
+
+                    <div class="command">
+                        <code>/give @user Zahl</code>
+                        <span class="command-description">Coins geben</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/group on</code>
+                        <span class="command-description">Bot aktivieren</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/group off</code>
+                        <span class="command-description">Bot deaktivieren</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/del @user</code>
+                        <span class="command-description">User löschen</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/del confirm @user</code>
+                        <span class="command-description">Löschung bestätigen</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/add mod @user</code>
+                        <span class="command-description">Moderator hinzufügen</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/del mod @user</code>
+                        <span class="command-description">Moderator entfernen</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- MOD -->
+
+            <div class="category" id="mod">
+
+                <div class="category-header" onclick="toggleCategory(this)">
+
+                    <div class="category-left">
+
+                        <div class="category-icon">🛡️</div>
+
+                        <div class="category-title">
+                            <strong>Moderation</strong>
+                            <small>Nur Mods & Owner</small>
+                        </div>
+
+                    </div>
+
+                    <span class="arrow">⌄</span>
+
+                </div>
+
+                <div class="commands">
+
+                    <div class="command">
+                        <code>/warn add @user</code>
+                        <span class="command-description">Verwarnung geben</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/warn del @user</code>
+                        <span class="command-description">Warnungen löschen</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/mute @user</code>
+                        <span class="command-description">User muten</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/unmute @user</code>
+                        <span class="command-description">User entmuten</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/promote @user</code>
+                        <span class="command-description">Admin geben</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/demote @user</code>
+                        <span class="command-description">Admin entfernen</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/kick @user</code>
+                        <span class="command-description">User entfernen</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/ab add Beleidigung</code>
+                        <span class="command-description">Wort sperren</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/ab check</code>
+                        <span class="command-description">Wörter anzeigen</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/ab del Beleidigung</code>
+                        <span class="command-description">Wort entfernen</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/link add Link</code>
+                        <span class="command-description">Link sperren</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/link check</code>
+                        <span class="command-description">Links anzeigen</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/link del Link</code>
+                        <span class="command-description">Link entsperren</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SYSTEM -->
+
+            <div class="category" id="system">
+
+                <div class="category-header" onclick="toggleCategory(this)">
+
+                    <div class="category-left">
+
+                        <div class="category-icon">⚙️</div>
+
+                        <div class="category-title">
+                            <strong>System</strong>
+                            <small>Bot-System</small>
+                        </div>
+
+                    </div>
+
+                    <span class="arrow">⌄</span>
+
+                </div>
+
+                <div class="commands">
+
+                    <div class="command">
+                        <code>/ping</code>
+                        <span class="command-description">Echter Ping in ms</span>
+                    </div>
+
+                    <div class="command">
+                        <code>/checkbot</code>
+                        <span class="command-description">Bot-Status prüfen</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= INFO ================= -->
+
+    <div class="info-grid">
+
+        <div class="info-box">
+
+            <h3>Nova Bot</h3>
+
+            <p>
+                Nova ist ein WhatsApp-Bot mit Economy,
+                Games, Moderation und vielen praktischen
+                Gruppenfunktionen.
+            </p>
+
+            <div class="badges">
+                <span class="badge">WhatsApp</span>
+                <span class="badge">Economy</span>
+                <span class="badge">Moderation</span>
+                <span class="badge">Games</span>
+                <span class="badge">Fun</span>
+            </div>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <h3>System</h3>
+
+            <p>
+                Status:
+                <strong style="color:#25d366">
+                    Online
+                </strong>
+            </p>
+
+            <p style="margin-top:8px">
+                Version: 1.0.0
+            </p>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<script>
+
+/* ================= SIDEBAR ================= */
+
+function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("show");
+}
+
+
+/* ================= CATEGORY ================= */
+
+function toggleCategory(header) {
+
+    const category = header.parentElement;
+
+    category.classList.toggle("open");
+
+}
+
+
+/* ================= NAVIGATION ================= */
+
+function goCommands() {
+
+    document.getElementById("commands-section")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+}
+
+function scrollToTop() {
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* ================= SIDEBAR CATEGORY ================= */
+
+function openCategory(id) {
+
+    const category = document.getElementById(id);
+
+    if (!category.classList.contains("open")) {
+        category.classList.add("open");
+    }
+
+    category.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+}
+
+
+/* ================= COMMAND SEARCH ================= */
+
+function searchCommands() {
+
+    const input =
+        document.getElementById("search")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const categories =
+        document.querySelectorAll(".category");
+
+    categories.forEach(category => {
+
+        const commands =
+            category.querySelectorAll(".command");
+
+        let found = false;
+
+        commands.forEach(command => {
+
+            const text =
+                command.innerText.toLowerCase();
+
+            if (text.includes(input)) {
+
+                command.style.display = "flex";
+                found = true;
+
+            } else {
+
+                command.style.display = "none";
+
+            }
+
+        });
+
+        if (input !== "" && found) {
+
+            category.classList.add("open");
+
+        }
+
+        if (input === "") {
+
+            category.classList.remove("open");
+
+            commands.forEach(command => {
+                command.style.display = "flex";
+            });
+
+        }
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
