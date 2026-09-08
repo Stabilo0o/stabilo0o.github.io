@@ -3,367 +3,217 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#e50914">
-
-<title>Nova-Bot | Commands</title>
+<title>Nova-Bot</title>
 
 <style>
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
-:root {
-    --red: #e50914;
-    --red-light: #ff3340;
-    --red-dark: #9e0008;
-    --bg: #070707;
-    --card: #121212;
-    --card2: #181818;
-    --border: #292929;
-    --text: #ffffff;
-    --muted: #999999;
+html {
+    scroll-behavior: smooth;
 }
 
 body {
+    margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background:
-        radial-gradient(
-            circle at top,
-            rgba(229, 9, 20, 0.18),
-            transparent 35%
-        ),
-        var(--bg);
-    color: var(--text);
-    min-height: 100vh;
+    background: #050505;
+    color: #fff;
 }
-
-/* HEADER */
 
 header {
+    padding: 45px 20px;
     text-align: center;
-    padding: 55px 20px 35px;
-    border-bottom: 1px solid var(--border);
-    background: rgba(0,0,0,0.45);
-    backdrop-filter: blur(10px);
+    background:
+        radial-gradient(circle at top, #300000 0%, #0a0000 35%, #050505 75%);
+    border-bottom: 1px solid #3a0000;
 }
 
-.logo {
-    width: 85px;
-    height: 85px;
-    margin: auto;
-    border-radius: 24px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 42px;
-
-    background: linear-gradient(
-        135deg,
-        var(--red),
-        var(--red-dark)
-    );
-
-    box-shadow:
-        0 0 35px rgba(229,9,20,0.45);
+header h1 {
+    margin: 0;
+    font-size: 46px;
+    color: #e50914;
+    text-shadow: 0 0 25px rgba(229, 9, 20, .4);
 }
 
-h1 {
-    margin-top: 18px;
-    font-size: 42px;
+header p {
+    color: #999;
+    margin: 10px 0 0;
+    font-size: 16px;
 }
 
-h1 span {
-    color: var(--red-light);
-}
-
-.subtitle {
-    margin-top: 10px;
-    color: var(--muted);
-}
-
-.badge {
-    display: inline-block;
-    margin-top: 18px;
-    padding: 7px 15px;
-
-    border-radius: 999px;
-
-    background: rgba(229,9,20,0.12);
-    border: 1px solid rgba(229,9,20,0.35);
-
-    color: var(--red-light);
-    font-size: 13px;
-}
-
-/* SEARCH */
-
-.search-area {
-    max-width: 850px;
+.container {
+    width: 92%;
+    max-width: 1050px;
     margin: 30px auto;
-    padding: 0 20px;
 }
+
+/* Beschreibung */
+
+.description {
+    background: #101010;
+    border: 1px solid #292929;
+    border-left: 4px solid #e50914;
+    border-radius: 15px;
+    padding: 28px;
+    margin-bottom: 28px;
+    line-height: 1.75;
+    box-shadow: 0 0 25px rgba(229, 9, 20, .07);
+}
+
+.description h2 {
+    margin-top: 0;
+    color: #e50914;
+    font-size: 27px;
+}
+
+.description h3 {
+    color: #fff;
+    margin-top: 28px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #292929;
+}
+
+.description p {
+    color: #bcbcbc;
+}
+
+.description strong {
+    color: #fff;
+}
+
+.code-box {
+    background: #050505;
+    border: 1px solid #333;
+    border-left: 3px solid #e50914;
+    border-radius: 8px;
+    padding: 12px 15px;
+    color: #ff3030;
+    font-family: Consolas, monospace;
+    margin: 12px 0;
+}
+
+/* Suche */
 
 .search {
     width: 100%;
-
-    padding: 17px 20px;
-
-    border-radius: 14px;
-    border: 1px solid var(--border);
-
+    padding: 17px;
+    margin-bottom: 22px;
     background: #101010;
-    color: white;
-
+    color: #fff;
+    border: 1px solid #333;
+    border-radius: 11px;
     outline: none;
     font-size: 16px;
-
-    transition: 0.2s;
 }
 
 .search:focus {
-    border-color: var(--red);
-
-    box-shadow:
-        0 0 20px rgba(229,9,20,0.18);
+    border-color: #e50914;
+    box-shadow: 0 0 10px rgba(229, 9, 20, .15);
 }
 
-/* MAIN */
+/* Kategorien */
 
-main {
-    max-width: 1100px;
-    margin: auto;
-    padding: 0 20px 60px;
-}
-
-/* CATEGORY */
-
-.category-box {
-    margin-bottom: 14px;
-
-    border: 1px solid var(--border);
-    border-radius: 15px;
-
-    background: rgba(18,18,18,0.9);
-
+.category {
+    background: #101010;
+    border: 1px solid #292929;
+    border-radius: 13px;
+    margin-bottom: 12px;
     overflow: hidden;
-
-    transition: 0.2s;
 }
 
-.category-box.open {
-    border-color: rgba(229,9,20,0.55);
-
-    box-shadow:
-        0 5px 25px rgba(0,0,0,0.3);
-}
-
-/* CATEGORY HEADER */
-
-.category-header {
-    width: 100%;
-
-    padding: 18px 20px;
-
+.category-title {
+    padding: 19px 20px;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    cursor: pointer;
-
-    background: #121212;
-    color: white;
-
-    border: none;
-
-    text-align: left;
-
-    font-size: 18px;
+    font-size: 19px;
     font-weight: bold;
+    transition: .2s;
 }
 
-.category-header:hover {
-    background: #181818;
-}
-
-.category-left {
-    display: flex;
-    align-items: center;
-    gap: 13px;
-}
-
-.category-icon {
-    width: 38px;
-    height: 38px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 10px;
-
-    background: rgba(229,9,20,0.13);
-    border: 1px solid rgba(229,9,20,0.25);
-
-    font-size: 18px;
+.category-title:hover {
+    background: #171717;
+    color: #e50914;
 }
 
 .arrow {
-    color: var(--red-light);
-    font-size: 18px;
-
-    transition: transform 0.25s;
+    color: #e50914;
+    font-size: 25px;
+    transition: .2s;
 }
 
-.category-box.open .arrow {
-    transform: rotate(180deg);
+.category.open .arrow {
+    transform: rotate(90deg);
 }
-
-/* COMMAND AREA */
-
-.category-content {
-    max-height: 0;
-
-    overflow: hidden;
-
-    transition:
-        max-height 0.35s ease,
-        padding 0.25s ease;
-
-    padding: 0 18px;
-}
-
-.category-box.open .category-content {
-    max-height: 5000px;
-    padding: 18px;
-}
-
-/* COMMANDS */
 
 .commands {
-    display: grid;
-
-    grid-template-columns:
-        repeat(auto-fill, minmax(290px, 1fr));
-
-    gap: 12px;
+    display: none;
+    padding: 0 15px 15px;
 }
 
-/* COMMAND CARD */
+.category.open .commands {
+    display: block;
+}
+
+/* Befehle */
 
 .command {
-    padding: 16px;
-
-    background:
-        linear-gradient(
-            145deg,
-            var(--card2),
-            #101010
-        );
-
-    border: 1px solid var(--border);
-
-    border-radius: 13px;
-
-    transition: 0.2s;
-}
-
-.command:hover {
-    transform: translateY(-2px);
-
-    border-color:
-        rgba(229,9,20,0.55);
-
-    box-shadow:
-        0 8px 25px rgba(0,0,0,0.3);
+    background: #080808;
+    border: 1px solid #222;
+    border-left: 3px solid #e50914;
+    border-radius: 8px;
+    padding: 13px 15px;
+    margin-top: 8px;
 }
 
 .command-name {
-    color: var(--red-light);
-
-    font-family: monospace;
-    font-size: 16px;
-
+    color: #ff2020;
+    font-family: Consolas, monospace;
     font-weight: bold;
-
-    margin-bottom: 8px;
+    font-size: 16px;
 }
 
 .command-description {
-    color: #b8b8b8;
-
+    margin-top: 5px;
+    color: #999;
     font-size: 14px;
     line-height: 1.5;
 }
 
-/* NO RESULTS */
+/* Suchresultate */
 
 .no-results {
     display: none;
-
     text-align: center;
-
-    padding: 50px 20px;
-
-    color: var(--muted);
+    padding: 30px;
+    color: #777;
 }
 
-.no-results h2 {
-    color: white;
-    margin-bottom: 8px;
-}
-
-/* FOOTER */
+/* Footer */
 
 footer {
-    border-top: 1px solid var(--border);
-
-    padding: 30px 20px;
-
     text-align: center;
-
-    color: #777;
-
-    font-size: 13px;
+    color: #666;
+    padding: 40px 15px;
 }
 
-footer strong {
-    color: var(--red-light);
+footer span {
+    color: #e50914;
 }
-
-/* MOBILE */
 
 @media (max-width: 600px) {
-
-    header {
-        padding-top: 40px;
-    }
-
-    h1 {
+    header h1 {
         font-size: 34px;
     }
 
-    .logo {
-        width: 72px;
-        height: 72px;
-        font-size: 34px;
+    .description {
+        padding: 20px;
     }
 
-    .commands {
-        grid-template-columns: 1fr;
-    }
-
-    .category-header {
-        padding: 15px;
-        font-size: 16px;
-    }
-
-    .category-icon {
-        width: 34px;
-        height: 34px;
+    .category-title {
+        font-size: 17px;
     }
 }
 </style>
@@ -372,1427 +222,554 @@ footer strong {
 <body>
 
 <header>
-
-    <div class="logo">🤖</div>
-
-    <h1>
-        <span>Nova</span>-Bot
-    </h1>
-
-    <p class="subtitle">
-        WhatsApp Bot · Commands · Moderation · Economy · Games
-    </p>
-
-    <div class="badge">
-        Command Center
-    </div>
-
+    <h1>Nova-Bot</h1>
+    <p>WhatsApp Bot · Economy · Clans · Moderation · Fun · Tools</p>
 </header>
 
-<div class="search-area">
+<div class="container">
 
-    <input
-        id="search"
-        class="search"
-        type="text"
-        placeholder="🔎 Befehl suchen, z. B. /ping ..."
-        autocomplete="off"
-    >
+<!-- ================= BESCHREIBUNG ================= -->
 
+<section class="description">
+
+<h2>Über den Nova-Bot</h2>
+
+<p>
+Wenn du den Bot benutzen möchtest, musst du als Erstes in einer Gruppe,
+in der sich der Bot befindet, folgenden Befehl schreiben:
+</p>
+
+<div class="code-box">/dsgvo accept</div>
+
+<p>
+Nachdem der Bot dir in der Gruppe geantwortet hat, gehst du in den
+<strong>privaten Chat mit dem Bot</strong> und schreibst:
+</p>
+
+<div class="code-box">/register Name deiner Wahl</div>
+
+<p>
+Wenn du das getan hast, kannst du zurück in die Gruppe gehen und
+anfangen, den Bot zu benutzen.
+</p>
+
+<h3>Deine ersten Coins</h3>
+
+<p>
+Du startest mit <strong>500 Coins</strong>. Früher waren es einmal
+1.000 Coins, aber der Owner macht gelegentlich Updates und kann
+dabei die Werte verändern.
+</p>
+
+<p>
+500 Coins bringen dir am Anfang nicht besonders viel, da eine Firma,
+die dir eine bestimmte Menge Geld pro Stunde generiert,
+<strong>2.000 Coins</strong> kostet.
+</p>
+
+<h3>Warum sind Spiele in manchen Gruppen deaktiviert?</h3>
+
+<p>
+In vielen Gruppen sind Spiele deaktiviert. Spiele können insbesondere
+dann sehr viele Nachrichten erzeugen, wenn mehrere Personen gleichzeitig
+mit dem Bot interagieren.
+</p>
+
+<p>
+Wenn der Bot innerhalb kurzer Zeit sehr viele Nachrichten sendet,
+kann dies als ungewöhnlich hohe Aktivität auffallen. Deshalb werden
+Spiele in manchen Gruppen deaktiviert, um das Nachrichtenaufkommen
+und Spam deutlich zu reduzieren.
+</p>
+
+<p>
+Auch offizielle Bot-Lösungen können Kosten verursachen. Bei sehr vielen
+Nachrichten können deshalb schnell hohe Kosten entstehen. Aus diesem
+Grund entscheiden sich manche Gruppen dafür, bestimmte Spiele
+auszuschalten.
+</p>
+
+<h3>Tipp für neue Spieler</h3>
+
+<p>
+Wenn du neu bist, kannst du eine andere Person nach
+<strong>1.500 Coins</strong> fragen. Danach kannst du mit
+<strong>/work</strong> und <strong>/daily</strong> weitere kostenlose
+Coins sammeln und anfangen, deine Firma auszubauen.
+</p>
+
+<h3>Die wichtigsten Befehle</h3>
+
+<p>
+<strong>/shop</strong> ist einer der wichtigsten Befehle. Dort kannst
+du deine Firma und deinen Clan gründen oder einem bereits existierenden
+Clan beitreten. Außerdem kannst du deine Firma verbessern und
+verschiedene Upgrades kaufen.
+</p>
+
+<p>
+<strong>/menu</strong> zeigt dir eine Übersicht über fast alle
+verfügbaren Befehle. Nova-Bot besitzt sehr viele Befehle für normale
+Spieler, Mods, Owner und Gruppen.
+</p>
+
+<h3>Top-Listen</h3>
+
+<p>
+Mit diesen Befehlen kannst du verschiedene Top-10-Listen anzeigen:
+</p>
+
+<div class="code-box">
+/top<br>
+/gtop<br>
+/atop<br>
+/xptop<br>
+/clantop
 </div>
 
-<main id="commandContainer">
-
-<!-- ACCOUNT -->
-
-<div class="category-box">
-
-    <button class="category-header">
-
-        <div class="category-left">
-            <div class="category-icon">👤</div>
-            <span>Account</span>
-        </div>
-
-        <span class="arrow">▼</span>
-
-    </button>
-
-    <div class="category-content">
-
-        <div class="commands">
-
-            <div class="command">
-                <div class="command-name">/account</div>
-                <div class="command-description">
-                    Zeigt Account-Optionen und Status an.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/balance</div>
-                <div class="command-description">
-                    Zeigt deine aktuelle Coin-, XP- und Level-Übersicht an.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/profile</div>
-                <div class="command-description">
-                    Zeigt dein Profil mit Coins, XP, Level und Punkten an.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/me</div>
-                <div class="command-description">
-                    Zeigt dein Profil oder das Profil der geantworteten Person an.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/whoami</div>
-                <div class="command-description">
-                    Zeigt Informationen über dich als Nutzer an.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/description</div>
-                <div class="command-description">
-                    Setzt oder löscht deine persönliche Beschreibung.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/register</div>
-                <div class="command-description">
-                    Registriert einen Nutzer mit Name nach DSGVO-Akzeptanz.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/dsgvo</div>
-                <div class="command-description">
-                    Startet den DSGVO-Registrierungsprozess.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/resetme</div>
-                <div class="command-description">
-                    Setzt deinen Account nach Bestätigung zurück.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/delme</div>
-                <div class="command-description">
-                    Löscht deinen Account nach Bestätigung.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/stats</div>
-                <div class="command-description">
-                    Zeigt deine Account-Statistiken.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/level</div>
-                <div class="command-description">
-                    Zeigt dein Level an.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/history</div>
-                <div class="command-description">
-                    Zeigt deine letzten Befehle und den meistgenutzten Befehl an.
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- ECONOMY -->
-
-<div class="category-box">
-
-    <button class="category-header">
-
-        <div class="category-left">
-            <div class="category-icon">💰</div>
-            <span>Economy</span>
-        </div>
-
-        <span class="arrow">▼</span>
-
-    </button>
-
-    <div class="category-content">
-
-        <div class="commands">
-
-            <div class="command">
-                <div class="command-name">/coin</div>
-                <div class="command-description">
-                    Zeigt deine Coins an.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/daily</div>
-                <div class="command-description">
-                    Gibt tägliche Coins von 1 bis 100. Cooldown: 24 Stunden.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/work</div>
-                <div class="command-description">
-                    Verdiene Coins durch Arbeit. Cooldown: 12 Stunden.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/bank</div>
-                <div class="command-description">
-                    Öffnet ein Bankkonto, zahlt ein, zahlt aus und zeigt den Kontostand an.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/pay</div>
-                <div class="command-description">
-                    Überweist Coins an einen Benutzer.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/paytop</div>
-                <div class="command-description">
-                    Zeigt die Top-Nutzer mit dem meisten gezahlten Geld.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/top</div>
-                <div class="command-description">
-                    Zeigt die Top-Nutzer nach Coins an.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/firma</div>
-                <div class="command-description">
-                    Verwalte deine Firma und kassiere passives Einkommen.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/shop</div>
-                <div class="command-description">
-                    Kaufe Upgrades und Items.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/code</div>
-                <div class="command-description">
-                    Nutze einen Geschenkecode um Coins oder VIP zu erhalten.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/clantop</div>
-                <div class="command-description">
-                    Zeigt die reichsten Clans nach Coins.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/iclantop</div>
-                <div class="command-description">
-                    Zeigt die reichsten Mitglieder im eigenen Clan.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/xptop</div>
-                <div class="command-description">
-                    Zeigt die Top-Nutzer nach XP an.
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- GAMES -->
-
-<div class="category-box">
-
-    <button class="category-header">
-
-        <div class="category-left">
-            <div class="category-icon">🎮</div>
-            <span>Games</span>
-        </div>
-
-        <span class="arrow">▼</span>
-
-    </button>
-
-    <div class="category-content">
-
-        <div class="commands">
-
-            <div class="command">
-                <div class="command-name">/games</div>
-                <div class="command-description">
-                    Schaltet Spiele in der aktuellen Gruppe ein oder aus.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/dice</div>
-                <div class="command-description">
-                    Würfelt eine Zahl von 1 bis 6.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/roll</div>
-                <div class="command-description">
-                    Würfelt eine Zufallszahl.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/guess</div>
-                <div class="command-description">
-                    Rate eine Zahl zwischen 1 und 10.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/higherlower</div>
-                <div class="command-description">
-                    Rate ob die nächste Zahl höher oder niedriger ist.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/rps</div>
-                <div class="command-description">
-                    Spiele Schere, Stein, Papier.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/trivia</div>
-                <div class="command-description">
-                    Stellt eine Trivia-Frage und prüft die Antwort.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/trivia2</div>
-                <div class="command-description">
-                    Stellt eine weitere Trivia-Frage.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/riddle</div>
-                <div class="command-description">
-                    Stellt ein Rätsel und prüft die Antwort.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/scramble</div>
-                <div class="command-description">
-                    Vermischt die Buchstaben deines Texts.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/coinflip</div>
-                <div class="command-description">
-                    Wirft eine Münze und zeigt Kopf oder Zahl.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/flip</div>
-                <div class="command-description">
-                    Wirft eine Münze.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/team</div>
-                <div class="command-description">
-                    Erstellt ein Team mit bis zu vier Spielern.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/kampf</div>
-                <div class="command-description">
-                    Startet einen PvP-Kampf gegen einen Nutzer.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/numbergame</div>
-                <div class="command-description">
-                    Aktiviert oder deaktiviert das Gruppen-Numbergame.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/numbergametop</div>
-                <div class="command-description">
-                    Top 10 Gruppen nach der höchsten erreichten Zahl.
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- FUN -->
-
-<div class="category-box">
-
-    <button class="category-header">
-
-        <div class="category-left">
-            <div class="category-icon">🎉</div>
-            <span>Fun</span>
-        </div>
-
-        <span class="arrow">▼</span>
-
-    </button>
-
-    <div class="category-content">
-
-        <div class="commands">
-
-            <div class="command">
-                <div class="command-name">/hi</div>
-                <div class="command-description">
-                    Begrüßt dich mit einer freundlichen Nachricht.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/joke</div>
-                <div class="command-description">
-                    Erzählt einen einfachen Witz.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/joke2</div>
-                <div class="command-description">
-                    Erzählt einen weiteren zufälligen Witz.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/compliment</div>
-                <div class="command-description">
-                    Schickt dir ein nettes Kompliment.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/fact</div>
-                <div class="command-description">
-                    Sendet einen interessanten Fakt.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/funfact</div>
-                <div class="command-description">
-                    Gibt einen interessanten Fun Fact aus.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/eightball</div>
-                <div class="command-description">
-                    Antwortet wie eine Zauberkugel auf deine Frage.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/quote</div>
-                <div class="command-description">
-                    Sendet ein inspirierendes Zitat.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/choose</div>
-                <div class="command-description">
-                    Wählt eine Option aus einer Liste aus.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/random</div>
-                <div class="command-description">
-                    Generiert eine zufällige Zahl zwischen 1 und 100.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/echo</div>
-                <div class="command-description">
-                    Wiederholt deinen Text zurück.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/reverse</div>
-                <div class="command-description">
-                    Kehrt den Text um.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/uppercase</div>
-                <div class="command-description">
-                    Wandelt den Text in Großbuchstaben um.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/lowercase</div>
-                <div class="command-description">
-                    Wandelt den Text in Kleinbuchstaben um.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/palindrome</div>
-                <div class="command-description">
-                    Prüft, ob ein Text ein Palindrom ist.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/sticker</div>
-                <div class="command-description">
-                    Erstellt ein Sticker-ähnliches Bild aus deinem Text.
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- MODERATION -->
-
-<div class="category-box">
-
-    <button class="category-header">
-
-        <div class="category-left">
-            <div class="category-icon">🛡️</div>
-            <span>Moderation</span>
-        </div>
-
-        <span class="arrow">▼</span>
-
-    </button>
-
-    <div class="category-content">
-
-        <div class="commands">
-
-            <div class="command">
-                <div class="command-name">/ab</div>
-                <div class="command-description">
-                    Verwaltet Anti-Beleidigung pro Gruppe.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/antilink</div>
-                <div class="command-description">
-                    Aktiviert oder deaktiviert Anti-Link.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/antigif</div>
-                <div class="command-description">
-                    Löscht GIFs in dieser Gruppe und gibt Verwarnungen.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/antimemo</div>
-                <div class="command-description">
-                    Löscht Sprachnachrichten und warnt bei Aktivierung.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/antiping</div>
-                <div class="command-description">
-                    Schützt markierte Nutzer vor unerwünschten Erwähnungen.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/antispam</div>
-                <div class="command-description">
-                    Aktiviert oder deaktiviert den Antispam-Schutz.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/antisticker</div>
-                <div class="command-description">
-                    Löscht Sticker in dieser Gruppe und gibt Verwarnungen.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/antivc</div>
-                <div class="command-description">
-                    Verwaltet Anti-Voice-Chat-Regeln.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/blacklist</div>
-                <div class="command-description">
-                    Verwaltet die Blacklist für Nutzer.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/block</div>
-                <div class="command-description">
-                    Blockiert oder entriegelt Nutzer für die aktuelle Gruppe.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/mute</div>
-                <div class="command-description">
-                    Stummschaltet einen Nutzer.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/unmute</div>
-                <div class="command-description">
-                    Hebt die Stummschaltung auf.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/warn</div>
-                <div class="command-description">
-                    Verwaltet Verwarnungen.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/warning</div>
-                <div class="command-description">
-                    Kickt Nutzer mit mindestens einer Verwarnung.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/kick</div>
-                <div class="command-description">
-                    Kickt einen Nutzer.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/masskick</div>
-                <div class="command-description">
-                    Kickt mehrere Nutzer auf einmal.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/purge</div>
-                <div class="command-description">
-                    Kickt einen Nutzer und löscht seine letzten Nachrichten.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/promote</div>
-                <div class="command-description">
-                    Gibt einem Nutzer Gruppen-Adminrechte.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/demote</div>
-                <div class="command-description">
-                    Entzieht einem Nutzer Gruppen-Adminrechte.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/closegroup</div>
-                <div class="command-description">
-                    Nur Admins dürfen schreiben.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/link</div>
-                <div class="command-description">
-                    Verwaltet gesperrte Links.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/logs</div>
-                <div class="command-description">
-                    Zeigt die letzten Moderationsereignisse der Gruppe.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/whois</div>
-                <div class="command-description">
-                    Zeigt Aktivitätsdaten eines Nutzers.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/inactives</div>
-                <div class="command-description">
-                    Listet inaktive Gruppenmitglieder.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/sandbox</div>
-                <div class="command-description">
-                    Aktiviert einen Sandbox-Modus für Mod-Tests.
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- OWNER -->
-
-<div class="category-box">
-
-    <button class="category-header">
-
-        <div class="category-left">
-            <div class="category-icon">👑</div>
-            <span>Owner</span>
-        </div>
-
-        <span class="arrow">▼</span>
-
-    </button>
-
-    <div class="category-content">
-
-        <div class="commands">
-
-            <div class="command">
-                <div class="command-name">/admin</div>
-                <div class="command-description">
-                    Owner- und Adminverwaltung.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/setowner</div>
-                <div class="command-description">
-                    Setzt einmalig den Owner.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/resetowner</div>
-                <div class="command-description">
-                    Setzt den Owner zurück.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/addmod</div>
-                <div class="command-description">
-                    Fügt einen Mod zur aktuellen Gruppe hinzu.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/delmod</div>
-                <div class="command-description">
-                    Entfernt einen Mod aus der aktuellen Gruppe.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/allmod</div>
-                <div class="command-description">
-                    Verwaltet globale Mods.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/botban</div>
-                <div class="command-description">
-                    Bannt Nutzer vom Bot mit optionaler Dauer.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/botcontrol</div>
-                <div class="command-description">
-                    Schaltet den Bot ein oder aus.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/group</div>
-                <div class="command-description">
-                    Schaltet den Bot in Gruppen ein oder aus.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/bc</div>
-                <div class="command-description">
-                    Sendet eine Nachricht an alle Bot-Gruppen.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/give</div>
-                <div class="command-description">
-                    Gibt einem Nutzer Coins.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/setcode</div>
-                <div class="command-description">
-                    Erstellt einen Geschenkecode.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/setvipcode</div>
-                <div class="command-description">
-                    Erstellt einen VIP-Code.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/setordencode</div>
-                <div class="command-description">
-                    Erstellt einen Orden-Code.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/restart</div>
-                <div class="command-description">
-                    Startet den Bot neu.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/off</div>
-                <div class="command-description">
-                    Deaktiviert den Bot.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/on</div>
-                <div class="command-description">
-                    Aktiviert den Bot wieder.
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- INFO -->
-
-<div class="category-box">
-
-    <button class="category-header">
-
-        <div class="category-left">
-            <div class="category-icon">ℹ️</div>
-            <span>Info</span>
-        </div>
-
-        <span class="arrow">▼</span>
-
-    </button>
-
-    <div class="category-content">
-
-        <div class="commands">
-
-            <div class="command">
-                <div class="command-name">/info</div>
-                <div class="command-description">
-                    Zeigt Informationen über den Bot und das Prefix.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/help</div>
-                <div class="command-description">
-                    Zeigt detaillierte Hilfe für einen Befehl.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/menu</div>
-                <div class="command-description">
-                    Zeigt das hierarchische Menü mit Befehlen.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/ping</div>
-                <div class="command-description">
-                    Antwortet mit Pong und der Latenzzeit.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/checkbot</div>
-                <div class="command-description">
-                    Prüft, ob der Bot aktiv ist.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/credits</div>
-                <div class="command-description">
-                    Zeigt das Team hinter dem Bot.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/rules</div>
-                <div class="command-description">
-                    Zeigt Gruppen- oder Bot-Regeln.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/atop</div>
-                <div class="command-description">
-                    Top 10 aktivste Gruppen.
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- TOOLS -->
-
-<div class="category-box">
-
-    <button class="category-header">
-
-        <div class="category-left">
-            <div class="category-icon">🔧</div>
-            <span>Tools</span>
-        </div>
-
-        <span class="arrow">▼</span>
-
-    </button>
-
-    <div class="category-content">
-
-        <div class="commands">
-
-            <div class="command">
-                <div class="command-name">/base64</div>
-                <div class="command-description">
-                    Kodiert Text als Base64-String.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/binary</div>
-                <div class="command-description">
-                    Wandelt Text in Binärdaten um.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/hex</div>
-                <div class="command-description">
-                    Wandelt Text in Hexadezimal um.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/morse</div>
-                <div class="command-description">
-                    Kodiert Text in Morsezeichen.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/calc</div>
-                <div class="command-description">
-                    Rechnet einfache Additionen und Subtraktionen.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/translate</div>
-                <div class="command-description">
-                    Übersetzt einen Text in eine andere Sprache.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/translate2</div>
-                <div class="command-description">
-                    Übersetzt kurze Sätze in Englisch oder Deutsch.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/ai</div>
-                <div class="command-description">
-                    Sendet eine Frage an den AI-Service.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/inviteinfo</div>
-                <div class="command-description">
-                    Zeigt Invite-Link-Infos.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/choose</div>
-                <div class="command-description">
-                    Wählt eine Option aus einer Liste.
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- SYSTEM -->
-
-<div class="category-box">
-
-    <button class="category-header">
-
-        <div class="category-left">
-            <div class="category-icon">⚙️</div>
-            <span>System</span>
-        </div>
-
-        <span class="arrow">▼</span>
-
-    </button>
-
-    <div class="category-content">
-
-        <div class="commands">
-
-            <div class="command">
-                <div class="command-name">/gi</div>
-                <div class="command-description">
-                    Zeigt eine Übersicht aller Gruppen-Einstellungen.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/install</div>
-                <div class="command-description">
-                    Zeigt oder speichert Gruppen-Einstellungen.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/prset</div>
-                <div class="command-description">
-                    Setzt das Präfix für die aktuelle Gruppe.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/kill</div>
-                <div class="command-description">
-                    Schaltet den Bot in der Gruppe vorübergehend aus oder ein.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/welcome</div>
-                <div class="command-description">
-                    Setzt die Willkommensnachricht.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/wilkommen</div>
-                <div class="command-description">
-                    Verwaltet Willkommensnachrichten.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/wl</div>
-                <div class="command-description">
-                    Zeigt die WL-Nachricht an.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/event</div>
-                <div class="command-description">
-                    Zeigt oder verwaltet Events.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/umfrage</div>
-                <div class="command-description">
-                    Erstellt eine Umfrage in allen Gruppen.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/vote</div>
-                <div class="command-description">
-                    Stimmt bei der laufenden Umfrage ab.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/support</div>
-                <div class="command-description">
-                    Stellt eine Supportanfrage.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/ans</div>
-                <div class="command-description">
-                    Antwortet auf eine Supportanfrage.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/escalate</div>
-                <div class="command-description">
-                    Meldet ein eskaliertes Problem an den Owner.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/todo</div>
-                <div class="command-description">
-                    Verwaltet persönliche Mod-Aufgaben.
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- CLAN / PET -->
-
-<div class="category-box">
-
-    <button class="category-header">
-
-        <div class="category-left">
-            <div class="category-icon">🏆</div>
-            <span>Clan, Pet & Items</span>
-        </div>
-
-        <span class="arrow">▼</span>
-
-    </button>
-
-    <div class="category-content">
-
-        <div class="commands">
-
-            <div class="command">
-                <div class="command-name">/clan</div>
-                <div class="command-description">
-                    Clan-Management mit Invite, Kick, Leave und Admin.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/pet</div>
-                <div class="command-description">
-                    Verwaltet dein Haustier, Hunt, Prestige und Bücher.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/book</div>
-                <div class="command-description">
-                    Nutze Bücher für Pet-XP.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/chest</div>
-                <div class="command-description">
-                    Öffnet oder zeigt deine Chests.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/orden</div>
-                <div class="command-description">
-                    Verwalte deine Orden.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/trade</div>
-                <div class="command-description">
-                    Handel mit Orden oder Items.
-                </div>
-            </div>
-
-            <div class="command">
-                <div class="command-name">/rang</div>
-                <div class="command-description">
-                    Verwaltet Nutzer-Ränge.
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
+<p>
+<strong>/top</strong> zeigt die Top 10 nach Coins.
+</p>
+
+<p>
+<strong>/gtop</strong> zeigt die aktivsten Schreiber der aktuellen Gruppe.
+</p>
+
+<p>
+<strong>/atop</strong> zeigt die aktivsten Gruppen nach der Anzahl
+der gesendeten Nachrichten.
+</p>
+
+<p>
+<strong>/xptop</strong> zeigt die Nutzer mit dem höchsten XP-Level.
+</p>
+
+<p>
+<strong>/clantop</strong> zeigt die reichsten Clans.
+</p>
+
+<h3>Games</h3>
+
+<p>
+Wenn Spiele in deiner Gruppe aktiviert sind, stehen verschiedene
+Games zur Verfügung. Welche Spiele verwendet werden können, hängt
+von den Einstellungen der jeweiligen Gruppe ab.
+</p>
+
+<p>
+<strong>Viel Spaß mit dem Nova-Bot!</strong>
+</p>
+
+</section>
+
+<!-- ================= SUCHE ================= -->
+
+<input
+    type="text"
+    id="search"
+    class="search"
+    placeholder="Befehl suchen, z. B. /shop..."
+>
 
 <div id="noResults" class="no-results">
+    Kein passender Befehl gefunden.
+</div>
 
-    <h2>Kein Befehl gefunden</h2>
+<!-- ================= ACCOUNT ================= -->
 
-    <p>
-        Versuche einen anderen Suchbegriff.
-    </p>
+<div class="category">
+<div class="category-title" onclick="toggleCategory(this)">
+    Account
+    <span class="arrow">›</span>
+</div>
+
+<div class="commands">
+
+<div class="command"><div class="command-name">/account</div><div class="command-description">Zeigt Account-Optionen und deinen Status an.</div></div>
+<div class="command"><div class="command-name">/balance</div><div class="command-description">Zeigt deine Coins, XP und dein Level an.</div></div>
+<div class="command"><div class="command-name">/bank</div><div class="command-description">Öffnet dein Bankkonto und ermöglicht Einzahlungen, Auszahlungen und Kontostandsabfragen.</div></div>
+<div class="command"><div class="command-name">/coin</div><div class="command-description">Zeigt deine aktuellen Coins.</div></div>
+<div class="command"><div class="command-name">/description</div><div class="command-description">Setzt oder löscht deine persönliche Beschreibung.</div></div>
+<div class="command"><div class="command-name">/level</div><div class="command-description">Zeigt dein Level an.</div></div>
+<div class="command"><div class="command-name">/me</div><div class="command-description">Zeigt dein Profil oder das Profil einer geantworteten Person.</div></div>
+<div class="command"><div class="command-name">/profile</div><div class="command-description">Zeigt dein Profil mit Coins, XP, Level und Punkten.</div></div>
+<div class="command"><div class="command-name">/register</div><div class="command-description">Registriert einen Nutzer nach DSGVO-Akzeptanz.</div></div>
+<div class="command"><div class="command-name">/resetme</div><div class="command-description">Setzt deinen Account nach Bestätigung zurück.</div></div>
+<div class="command"><div class="command-name">/delme</div><div class="command-description">Löscht deinen Account nach Bestätigung.</div></div>
+<div class="command"><div class="command-name">/whoami</div><div class="command-description">Zeigt Informationen über dich als Nutzer.</div></div>
+
+</div>
+</div>
+
+<!-- ================= ECONOMY ================= -->
+
+<div class="category">
+<div class="category-title" onclick="toggleCategory(this)">
+    Economy
+    <span class="arrow">›</span>
+</div>
+
+<div class="commands">
+
+<div class="command"><div class="command-name">/work</div><div class="command-description">Verdient Coins durch Arbeit. Cooldown: 12 Stunden.</div></div>
+<div class="command"><div class="command-name">/daily</div><div class="command-description">Gibt tägliche Coins. Cooldown: 24 Stunden.</div></div>
+<div class="command"><div class="command-name">/pay</div><div class="command-description">Überweist Coins an einen anderen Benutzer.</div></div>
+<div class="command"><div class="command-name">/paytop</div><div class="command-description">Zeigt die Nutzer mit dem höchsten gezahlten Geld.</div></div>
+<div class="command"><div class="command-name">/firma</div><div class="command-description">Verwaltet deine Firma und dein passives Einkommen.</div></div>
+<div class="command"><div class="command-name">/shop</div><div class="command-description">Kauft Economy-Upgrades und Items.</div></div>
+<div class="command"><div class="command-name">/code</div><div class="command-description">Löst einen Geschenkcode für Coins oder VIP ein.</div></div>
+<div class="command"><div class="command-name">/top</div><div class="command-description">Zeigt die Top-Nutzer nach Coins.</div></div>
+
+</div>
+</div>
+
+<!-- ================= GAMES ================= -->
+
+<div class="category">
+<div class="category-title" onclick="toggleCategory(this)">
+    Games
+    <span class="arrow">›</span>
+</div>
+
+<div class="commands">
+
+<div class="command"><div class="command-name">/gamble</div><div class="command-description">Economy-Spiel mit Coins, sofern Games in der Gruppe aktiviert sind.</div></div>
+<div class="command"><div class="command-name">/coinflip</div><div class="command-description">Wirft eine Münze und zeigt Kopf oder Zahl.</div></div>
+<div class="command"><div class="command-name">/flip</div><div class="command-description">Wirft eine Münze.</div></div>
+<div class="command"><div class="command-name">/flipbattle</div><div class="command-description">Münzwurf-Duell gegen den Bot mit möglichem Coin-Gewinn.</div></div>
+<div class="command"><div class="command-name">/slots</div><div class="command-description">Slot-Spiel mit animiertem Ergebnis und Gewinnanzeige.</div></div>
+<div class="command"><div class="command-name">/dice</div><div class="command-description">Würfelt eine Zahl von 1 bis 6.</div></div>
+<div class="command"><div class="command-name">/roll</div><div class="command-description">Würfelt eine Zufallszahl.</div></div>
+<div class="command"><div class="command-name">/guess</div><div class="command-description">Rate eine Zahl zwischen 1 und 10.</div></div>
+<div class="command"><div class="command-name">/higherlower</div><div class="command-description">Rate, ob die nächste Zahl höher oder niedriger ist.</div></div>
+<div class="command"><div class="command-name">/numbergame</div><div class="command-description">Aktiviert oder deaktiviert das Gruppen-Numbergame.</div></div>
+<div class="command"><div class="command-name">/numbergametop</div><div class="command-description">Zeigt die Top 10 Gruppen nach der höchsten erreichten Numbergame-Zahl.</div></div>
+<div class="command"><div class="command-name">/rps</div><div class="command-description">Spielt Schere, Stein, Papier.</div></div>
+<div class="command"><div class="command-name">/trivia</div><div class="command-description">Stellt eine Trivia-Frage und prüft die Antwort.</div></div>
+<div class="command"><div class="command-name">/trivia2</div><div class="command-description">Stellt eine weitere Trivia-Frage.</div></div>
+<div class="command"><div class="command-name">/riddle</div><div class="command-description">Stellt ein Rätsel und prüft die Antwort.</div></div>
+<div class="command"><div class="command-name">/perge</div><div class="command-description">VIP-Arena mit mehreren Spielern.</div></div>
+<div class="command"><div class="command-name">/kampf</div><div class="command-description">Startet einen PvP-Kampf gegen einen Nutzer mit Akzeptanz, Angriff, Tränken und Schutz.</div></div>
+<div class="command"><div class="command-name">/rob</div><div class="command-description">Economy-Spiel zum Versuch, Coins eines markierten Nutzers zu erhalten.</div></div>
+<div class="command"><div class="command-name">/hack</div><div class="command-description">Unterhaltungsfunktion mit einer 50/50-Chance und Economy-Belohnung.</div></div>
+<div class="command"><div class="command-name">/games</div><div class="command-description">Schaltet Spiele in der aktuellen Gruppe ein oder aus (Mods/Owner).</div></div>
+<div class="command"><div class="command-name">/anumbergame</div><div class="command-description">Owner-Override für das Numbergame.</div></div>
+
+</div>
+</div>
+
+<!-- ================= CLAN / PET ================= -->
+
+<div class="category">
+<div class="category-title" onclick="toggleCategory(this)">
+    Clan, Pet & Items
+    <span class="arrow">›</span>
+</div>
+
+<div class="commands">
+
+<div class="command"><div class="command-name">/clan</div><div class="command-description">Clan-Management inklusive Einladen, Admins, Kicken, Verlassen und Gruppenerstellung.</div></div>
+<div class="command"><div class="command-name">/clantop</div><div class="command-description">Zeigt die reichsten Clans nach Coins.</div></div>
+<div class="command"><div class="command-name">/iclantop</div><div class="command-description">Zeigt die reichsten Mitglieder deines eigenen Clans.</div></div>
+<div class="command"><div class="command-name">/pet</div><div class="command-description">Verwaltet dein Haustier, Hunt, Prestige und Bücher.</div></div>
+<div class="command"><div class="command-name">/book</div><div class="command-description">Nutzt Bücher für Pet-XP.</div></div>
+<div class="command"><div class="command-name">/chest</div><div class="command-description">Öffnet oder zeigt deine Chests.</div></div>
+<div class="command"><div class="command-name">/orden</div><div class="command-description">Verwaltet deine Orden: Inv, Equip und Chance.</div></div>
+<div class="command"><div class="command-name">/trade</div><div class="command-description">Handelt mit Orden oder Items.</div></div>
+
+</div>
+</div>
+
+<!-- ================= TOP ================= -->
+
+<div class="category">
+<div class="category-title" onclick="toggleCategory(this)">
+    Ranglisten
+    <span class="arrow">›</span>
+</div>
+
+<div class="commands">
+
+<div class="command"><div class="command-name">/top</div><div class="command-description">Top-Nutzer nach Coins.</div></div>
+<div class="command"><div class="command-name">/gtop</div><div class="command-description">Top 10 aktivste Schreiber der aktuellen Gruppe.</div></div>
+<div class="command"><div class="command-name">/atop</div><div class="command-description">Top 10 aktivste Gruppen nach Nachrichtenanzahl.</div></div>
+<div class="command"><div class="command-name">/xptop</div><div class="command-description">Top-Nutzer nach XP.</div></div>
+<div class="command"><div class="command-name">/clantop</div><div class="command-description">Reichste Clans.</div></div>
+<div class="command"><div class="command-name">/numbergametop</div><div class="command-description">Top 10 Gruppen nach der höchsten Numbergame-Zahl.</div></div>
+<div class="command"><div class="command-name">/paytop</div><div class="command-description">Top-Nutzer mit dem meisten gezahlten Geld.</div></div>
+
+</div>
+</div>
+
+<!-- ================= FUN ================= -->
+
+<div class="category">
+<div class="category-title" onclick="toggleCategory(this)">
+    Fun
+    <span class="arrow">›</span>
+</div>
+
+<div class="commands">
+
+<div class="command"><div class="command-name">/hi</div><div class="command-description">Begrüßt dich mit einer freundlichen Nachricht.</div></div>
+<div class="command"><div class="command-name">/joke</div><div class="command-description">Erzählt einen einfachen Witz.</div></div>
+<div class="command"><div class="command-name">/joke2</div><div class="command-description">Erzählt einen weiteren zufälligen Witz.</div></div>
+<div class="command"><div class="command-name">/compliment</div><div class="command-description">Schickt dir ein nettes Kompliment.</div></div>
+<div class="command"><div class="command-name">/roast</div><div class="command-description">Schickt einen leichten Roast.</div></div>
+<div class="command"><div class="command-name">/fact</div><div class="command-description">Sendet einen interessanten Fakt.</div></div>
+<div class="command"><div class="command-name">/funfact</div><div class="command-description">Gibt einen interessanten Fun Fact aus.</div></div>
+<div class="command"><div class="command-name">/quote</div><div class="command-description">Sendet ein inspirierendes Zitat.</div></div>
+<div class="command"><div class="command-name">/eightball</div><div class="command-description">Antwortet wie eine Zauberkugel auf eine Frage.</div></div>
+<div class="command"><div class="command-name">/choose</div><div class="command-description">Wählt eine Option aus einer Liste.</div></div>
+<div class="command"><div class="command-name">/random</div><div class="command-description">Generiert eine Zufallszahl zwischen 1 und 100.</div></div>
+<div class="command"><div class="command-name">/scramble</div><div class="command-description">Vermischt die Buchstaben deines Textes.</div></div>
+<div class="command"><div class="command-name">/palindrome</div><div class="command-description">Prüft, ob ein Text ein Palindrom ist.</div></div>
+<div class="command"><div class="command-name">/echo</div><div class="command-description">Wiederholt deinen Text.</div></div>
+<div class="command"><div class="command-name">/reverse</div><div class="command-description">Kehrt deinen Text um.</div></div>
+
+</div>
+</div>
+
+<!-- ================= TOOLS ================= -->
+
+<div class="category">
+<div class="category-title" onclick="toggleCategory(this)">
+    Tools
+    <span class="arrow">›</span>
+</div>
+
+<div class="commands">
+
+<div class="command"><div class="command-name">/ai</div><div class="command-description">Sendet eine Frage an den AI-Service und verarbeitet die Antwort.</div></div>
+<div class="command"><div class="command-name">/calc</div><div class="command-description">Rechnet einfache Additionen und Subtraktionen.</div></div>
+<div class="command"><div class="command-name">/base64</div><div class="command-description">Kodiert Text als Base64-String.</div></div>
+<div class="command"><div class="command-name">/binary</div><div class="command-description">Wandelt Text in Binärdaten um.</div></div>
+<div class="command"><div class="command-name">/hex</div><div class="command-description">Wandelt Text in Hexadezimal um.</div></div>
+<div class="command"><div class="command-name">/morse</div><div class="command-description">Kodiert Text in Morsezeichen.</div></div>
+<div class="command"><div class="command-name">/lowercase</div><div class="command-description">Wandelt Text in Kleinbuchstaben um.</div></div>
+<div class="command"><div class="command-name">/uppercase</div><div class="command-description">Wandelt Text in Großbuchstaben um.</div></div>
+<div class="command"><div class="command-name">/translate</div><div class="command-description">Übersetzt einen Text in eine andere Sprache.</div></div>
+<div class="command"><div class="command-name">/translate2</div><div class="command-description">Übersetzt kurze Sätze zwischen Englisch und Deutsch.</div></div>
+<div class="command"><div class="command-name">/sticker</div><div class="command-description">Erstellt ein Sticker-ähnliches Bild aus deinem Text.</div></div>
+<div class="command"><div class="command-name">/time</div><div class="command-description">Zeigt die aktuelle Zeit in einem Land.</div></div>
+<div class="command"><div class="command-name">/weather</div><div class="command-description">Zeigt simuliertes Wetter an.</div></div>
+<div class="command"><div class="command-name">/weather2</div><div class="command-description">Gibt eine zufällige Wettervorhersage aus.</div></div>
+<div class="command"><div class="command-name">/ping</div><div class="command-description">Antwortet mit Pong und der Latenzzeit.</div></div>
+<div class="command"><div class="command-name">/whois</div><div class="command-description">Zeigt Aktivitätsdaten eines Nutzers in der Gruppe (Mods/Owner).</div></div>
+<div class="command"><div class="command-name">/history</div><div class="command-description">Zeigt deine letzten Befehle und den meistgenutzten Befehl.</div></div>
+
+</div>
+</div>
+
+<!-- ================= INFO ================= -->
+
+<div class="category">
+<div class="category-title" onclick="toggleCategory(this)">
+    Info & Support
+    <span class="arrow">›</span>
+</div>
+
+<div class="commands">
+
+<div class="command"><div class="command-name">/menu</div><div class="command-description">Zeigt das hierarchische Befehlsmenü.</div></div>
+<div class="command"><div class="command-name">/help</div><div class="command-description">Zeigt eine detaillierte Hilfe für einen Befehl.</div></div>
+<div class="command"><div class="command-name">/info</div><div class="command-description">Zeigt Informationen über den Bot und das Prefix.</div></div>
+<div class="command"><div class="command-name">/credits</div><div class="command-description">Zeigt das Team hinter dem Bot.</div></div>
+<div class="command"><div class="command-name">/support</div><div class="command-description">Stellt eine Supportanfrage an Owner oder AllMods.</div></div>
+<div class="command"><div class="command-name">/ans</div><div class="command-description">Beantwortet eine Supportanfrage (Owner/AllMods).</div></div>
+<div class="command"><div class="command-name">/escalate</div><div class="command-description">Meldet ein eskaliertes Problem an den Owner.</div></div>
+<div class="command"><div class="command-name">/rules</div><div class="command-description">Zeigt Gruppen- oder Bot-Regeln.</div></div>
+<div class="command"><div class="command-name">/checkbot</div><div class="command-description">Prüft, ob der Bot aktiv ist.</div></div>
+<div class="command"><div class="command-name">/gi</div><div class="command-description">Zeigt eine Übersicht der Gruppen-Einstellungen.</div></div>
+<div class="command"><div class="command-name">/inviteinfo</div><div class="command-description">Zeigt verfügbare Informationen über einen Gruppen-Invite.</div></div>
+
+</div>
+</div>
+
+<!-- ================= MODERATION ================= -->
+
+<div class="category">
+<div class="category-title" onclick="toggleCategory(this)">
+    Moderation
+    <span class="arrow">›</span>
+</div>
+
+<div class="commands">
+
+<div class="command"><div class="command-name">/ab</div><div class="command-description">Verwaltet Anti-Beleidigung pro Gruppe: enable, disable, add, del, check.</div></div>
+<div class="command"><div class="command-name">/antigif</div><div class="command-description">Löscht GIFs in der Gruppe und gibt Verwarnungen.</div></div>
+<div class="command"><div class="command-name">/antilink</div><div class="command-description">Aktiviert oder deaktiviert den Anti-Link-Schutz.</div></div>
+<div class="command"><div class="command-name">/antimemo</div><div class="command-description">Löscht Sprachnachrichten und warnt bei Aktivierung.</div></div>
+<div class="command"><div class="command-name">/antiping</div><div class="command-description">Schützt markierte Nutzer vor unerwünschten Erwähnungen.</div></div>
+<div class="command"><div class="command-name">/antispam</div><div class="command-description">Aktiviert oder deaktiviert den Antispam-Schutz.</div></div>
+<div class="command"><div class="command-name">/antisticker</div><div class="command-description">Löscht Sticker in der Gruppe und gibt Verwarnungen.</div></div>
+<div class="command"><div class="command-name">/antivc</div><div class="command-description">Verwaltet Anti-Voice-Chat-Regeln.</div></div>
+<div class="command"><div class="command-name">/blacklist</div><div class="command-description">Verwaltet die Blacklist von Nutzern.</div></div>
+<div class="command"><div class="command-name">/block</div><div class="command-description">Blockiert oder entblockt Nutzer für die aktuelle Gruppe.</div></div>
+<div class="command"><div class="command-name">/cd</div><div class="command-description">Deaktiviert oder aktiviert einen Befehl in der Gruppe.</div></div>
+<div class="command"><div class="command-name">/cleanlinks</div><div class="command-description">Löscht gespeicherte Link-Nachrichten der letzten 7 Tage.</div></div>
+<div class="command"><div class="command-name">/closegroup</div><div class="command-description">Nur Admins dürfen schreiben.</div></div>
+<div class="command"><div class="command-name">/demote</div><div class="command-description">Entzieht einem Nutzer Gruppen-Adminrechte.</div></div>
+<div class="command"><div class="command-name">/demotegroup</div><div class="command-description">Entzieht einem Nutzer in der Gruppe Adminrechte.</div></div>
+<div class="command"><div class="command-name">/games</div><div class="command-description">Schaltet Spiele in der aktuellen Gruppe ein oder aus.</div></div>
+<div class="command"><div class="command-name">/kick</div><div class="command-description">Entfernt einen Nutzer aus der Gruppe.</div></div>
+<div class="command"><div class="command-name">/link</div><div class="command-description">Verwaltet gesperrte Links.</div></div>
+<div class="command"><div class="command-name">/linkmode</div><div class="command-description">Erlaubt in der Gruppe nur Links.</div></div>
+<div class="command"><div class="command-name">/logs</div><div class="command-description">Zeigt die letzten Moderationsereignisse der Gruppe.</div></div>
+<div class="command"><div class="command-name">/masskick</div><div class="command-description">Entfernt mehrere Nutzer auf einmal.</div></div>
+<div class="command"><div class="command-name">/mos</div><div class="command-description">Nur Mods dürfen den Bot verwenden.</div></div>
+<div class="command"><div class="command-name">/mute</div><div class="command-description">Stummschaltet einen Nutzer.</div></div>
+<div class="command"><div class="command-name">/promote</div><div class="command-description">Gibt einem Nutzer Gruppen-Adminrechte.</div></div>
+<div class="command"><div class="command-name">/promotegroup</div><div class="command-description">Erhebt einen Nutzer in der Gruppe zum Admin.</div></div>
+<div class="command"><div class="command-name">/purge</div><div class="command-description">Entfernt einen Nutzer, löscht dessen letzte Nachrichten und sperrt Links.</div></div>
+<div class="command"><div class="command-name">/sandbox</div><div class="command-description">Aktiviert einen Sandbox-Modus für Moderationstests.</div></div>
+<div class="command"><div class="command-name">/snipe</div><div class="command-description">Zeigt die zuletzt gelöschte Nachricht privat an.</div></div>
+<div class="command"><div class="command-name">/unmute</div><div class="command-description">Hebt die Stummschaltung eines Nutzers auf.</div></div>
+<div class="command"><div class="command-name">/warn</div><div class="command-description">Verwaltet Verwarnungen von Nutzern.</div></div>
+<div class="command"><div class="command-name">/warning</div><div class="command-description">Kann Nutzer mit mindestens einer Verwarnung sofort entfernen.</div></div>
+<div class="command"><div class="command-name">/welcome</div><div class="command-description">Setzt die Willkommensnachricht der Gruppe.</div></div>
+<div class="command"><div class="command-name">/wilkommen</div><div class="command-description">Verwaltet Willkommensnachrichten.</div></div>
+<div class="command"><div class="command-name">/wl</div><div class="command-description">Zeigt die Willkommensnachricht.</div></div>
+<div class="command"><div class="command-name">/inactives</div><div class="command-description">Listet Gruppenmitglieder ohne Aktivität in den letzten 30 Tagen.</div></div>
+<div class="command"><div class="command-name">/editsnipe</div><div class="command-description">Zeigt die zuletzt bearbeitete Nachricht privat an.</div></div>
+<div class="command"><div class="command-name">/spy</div><div class="command-description">Verwaltet Benachrichtigungen über Nachrichten und Löschungen eines Nutzers.</div></div>
+
+</div>
+</div>
+
+<!-- ================= OWNER ================= -->
+
+<div class="category">
+<div class="category-title" onclick="toggleCategory(this)">
+    Owner
+    <span class="arrow">›</span>
+</div>
+
+<div class="commands">
+
+<div class="command"><div class="command-name">/addmod</div><div class="command-description">Fügt einen Mod zur aktuellen Gruppe hinzu.</div></div>
+<div class="command"><div class="command-name">/allmod</div><div class="command-description">Verwaltet globale Mods.</div></div>
+<div class="command"><div class="command-name">/bc</div><div class="command-description">Sendet eine Nachricht an alle Gruppen des Bots.</div></div>
+<div class="command"><div class="command-name">/botban</div><div class="command-description">Bannt Nutzer vom Bot mit optionaler Dauer.</div></div>
+<div class="command"><div class="command-name">/botcontrol</div><div class="command-description">Schaltet den Bot ein oder aus.</div></div>
+<div class="command"><div class="command-name">/delmod</div><div class="command-description">Entfernt einen Mod aus der aktuellen Gruppe.</div></div>
+<div class="command"><div class="command-name">/delconfirm</div><div class="command-description">Bestätigt das Löschen eines Nutzers aus der Datenbank.</div></div>
+<div class="command"><div class="command-name">/give</div><div class="command-description">Gibt einem Nutzer Coins.</div></div>
+<div class="command"><div class="command-name">/group</div><div class="command-description">Schaltet den Bot in Gruppen ein oder aus.</div></div>
+<div class="command"><div class="command-name">/off</div><div class="command-description">Deaktiviert den Bot.</div></div>
+<div class="command"><div class="command-name">/on</div><div class="command-description">Aktiviert den Bot wieder.</div></div>
+<div class="command"><div class="command-name">/logout</div><div class="command-description">Loggt den Bot aus WhatsApp aus.</div></div>
+<div class="command"><div class="command-name">/restart</div><div class="command-description">Startet den Bot neu.</div></div>
+<div class="command"><div class="command-name">/setcode</div><div class="command-description">Erstellt einen Geschenkcode.</div></div>
+<div class="command"><div class="command-name">/setordencode</div><div class="command-description">Erstellt einen Orden-Code.</div></div>
+<div class="command"><div class="command-name">/setowner</div><div class="command-description">Setzt einmalig den Owner.</div></div>
+<div class="command"><div class="command-name">/setvipcode</div><div class="command-description">Erstellt einen VIP-Code.</div></div>
+<div class="command"><div class="command-name">/resetowner</div><div class="command-description">Setzt den Owner zurück, wenn du bereits der aktuelle Owner bist.</div></div>
+<div class="command"><div class="command-name">/umfrage</div><div class="command-description">Erstellt eine Umfrage in allen Gruppen.</div></div>
+<div class="command"><div class="command-name">/prset</div><div class="command-description">Setzt das Prefix für die aktuelle Gruppe.</div></div>
+
+</div>
+</div>
+
+<!-- ================= VIP ================= -->
+
+<div class="category">
+<div class="category-title" onclick="toggleCategory(this)">
+    VIP & Ränge
+    <span class="arrow">›</span>
+</div>
+
+<div class="commands">
+
+<div class="command"><div class="command-name">/vip</div><div class="command-description">Verwaltet VIPs und VIP-Zeiten.</div></div>
+<div class="command"><div class="command-name">/rang</div><div class="command-description">Verwaltet Nutzer-Ränge wie Supporter und AllMod.</div></div>
+<div class="command"><div class="command-name">/team</div><div class="command-description">Erstellt ein Team mit bis zu vier Spielern und zeigt Top-Teams.</div></div>
+
+</div>
+</div>
+
+<!-- ================= SYSTEM ================= -->
+
+<div class="category">
+<div class="category-title" onclick="toggleCategory(this)">
+    System
+    <span class="arrow">›</span>
+</div>
+
+<div class="commands">
+
+<div class="command"><div class="command-name">/dsgvo</div><div class="command-description">Startet den DSGVO-Registrierungsprozess.</div></div>
+<div class="command"><div class="command-name">/event</div><div class="command-description">Zeigt Events oder verwaltet sie.</div></div>
+<div class="command"><div class="command-name">/fsm</div><div class="command-description">Aktiviert den Notfallmodus für eine Gruppe.</div></div>
+<div class="command"><div class="command-name">/install</div><div class="command-description">Zeigt oder speichert Gruppen-Einstellungen.</div></div>
+<div class="command"><div class="command-name">/kill</div><div class="command-description">Schaltet den Bot in der Gruppe vorübergehend aus oder ein.</div></div>
+<div class="command"><div class="command-name">/todo</div><div class="command-description">Verwaltet persönliche Mod-Aufgaben.</div></div>
+<div class="command"><div class="command-name">/selfdemote</div><div class="command-description">Entzieht dem Owner/AllMod die eigenen Gruppenadminrechte.</div></div>
+<div class="command"><div class="command-name">/selfpromote</div><div class="command-description">Macht den Owner/AllMod selbst zum Gruppenadmin.</div></div>
+<div class="command"><div class="command-name">/join</div><div class="command-description">Sendet eine Beitrittsanfrage für einen Gruppenlink an Owner/AllMods.</div></div>
+<div class="command"><div class="command-name">/logout</div><div class="command-description">Logout aus WhatsApp.</div></div>
+
+</div>
+</div>
 
 </div>
 
-</main>
-
 <footer>
-
-    <p>
-        <strong>Nova-Bot</strong>
-        · WhatsApp Bot Command Center
-    </p>
-
-    <p style="margin-top:7px;">
-        Powered by Nova
-    </p>
-
+    <span>Nova-Bot</span> · WhatsApp Bot
 </footer>
-
 
 <script>
 
-/* ================================
-   ACCORDION
-================================ */
+function toggleCategory(element) {
+    const category = element.parentElement;
+    category.classList.toggle("open");
+}
 
-const categoryHeaders =
-    document.querySelectorAll(".category-header");
+const search = document.getElementById("search");
+const noResults = document.getElementById("noResults");
 
-categoryHeaders.forEach(header => {
+search.addEventListener("input", function () {
 
-    header.addEventListener("click", () => {
+    const value = this.value.toLowerCase().trim();
+    const categories = document.querySelectorAll(".category");
 
-        const box =
-            header.parentElement;
+    let totalFound = 0;
 
-        box.classList.toggle("open");
+    categories.forEach(category => {
 
-    });
-
-});
-
-
-/* ================================
-   SEARCH
-================================ */
-
-const search =
-    document.getElementById("search");
-
-const boxes =
-    document.querySelectorAll(".category-box");
-
-const noResults =
-    document.getElementById("noResults");
-
-
-search.addEventListener("input", () => {
-
-    const value =
-        search.value
-        .toLowerCase()
-        .trim();
-
-    let found = false;
-
-    boxes.forEach(box => {
-
-        const commands =
-            box.querySelectorAll(".command");
-
-        let boxFound = false;
+        const commands = category.querySelectorAll(".command");
+        let categoryFound = false;
 
         commands.forEach(command => {
 
-            const text =
-                command.innerText.toLowerCase();
+            const text = command.innerText.toLowerCase();
 
-            if (
-                value === "" ||
-                text.includes(value)
-            ) {
+            if (value === "" || text.includes(value)) {
+                command.style.display = "block";
 
-                command.style.display = "";
-
-                boxFound = true;
-                found = true;
+                if (value !== "") {
+                    categoryFound = true;
+                    totalFound++;
+                }
 
             } else {
-
-                command.style.display =
-                    "none";
-
+                command.style.display = "none";
             }
-
         });
 
-
-        if (value !== "" && boxFound) {
-
-            box.style.display = "";
-
-            /*
-             * Kategorie automatisch öffnen,
-             * wenn ein Suchergebnis vorhanden ist.
-             */
-
-            box.classList.add("open");
-
-        } else if (value !== "" && !boxFound) {
-
-            box.style.display = "none";
-
-        } else {
-
-            box.style.display = "";
-
+        if (value !== "" && categoryFound) {
+            category.classList.add("open");
         }
 
+        if (value === "") {
+            category.classList.remove("open");
+        }
     });
 
-
-    if (value !== "" && !found) {
-
-        noResults.style.display = "block";
-
-    } else {
-
-        noResults.style.display = "none";
-
-    }
-
-});
-
-
-/* ================================
-   ENTER = SUCHFELD LEEREN
-================================ */
-
-search.addEventListener("keydown", event => {
-
-    if (event.key === "Escape") {
-
-        search.value = "";
-
-        search.dispatchEvent(
-            new Event("input")
-        );
-
-    }
-
+    noResults.style.display =
+        value !== "" && totalFound === 0
+        ? "block"
+        : "none";
 });
 
 </script>
