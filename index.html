@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Nova Bot ist dein WhatsApp-Bot für Moderation, Economy, Games und Gruppenverwaltung.">
+<meta name="theme-color" content="#080b10">
 <title>Nova Bot — Dashboard</title>
 
 <style>
@@ -257,6 +259,40 @@ body {
     line-height: 1.6;
 }
 
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.hero-button {
+    border: 1px solid rgba(37,211,102,.35);
+    border-radius: 10px;
+    padding: 11px 16px;
+    background: var(--green);
+    color: #07140c;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform .2s, background .2s;
+}
+
+.hero-button:hover {
+    background: #42e27d;
+    transform: translateY(-1px);
+}
+
+.hero-button.secondary {
+    background: transparent;
+    color: var(--text);
+}
+
+.hero-button.secondary:hover {
+    background: rgba(255,255,255,.06);
+}
+
 /* ================= STATS ================= */
 
 .stats {
@@ -457,6 +493,13 @@ body {
     font-size: 13px;
 }
 
+.footer {
+    color: var(--muted);
+    font-size: 12px;
+    padding: 28px 0 8px;
+    text-align: center;
+}
+
 .badges {
     display: flex;
     flex-wrap: wrap;
@@ -531,6 +574,11 @@ body {
         font-size: 28px;
     }
 
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
     .stats {
         grid-template-columns: 1fr 1fr;
     }
@@ -571,7 +619,7 @@ body {
 
 <!-- ================= SIDEBAR ================= -->
 
-<aside class="sidebar" id="sidebar">
+<aside class="sidebar" id="sidebar" aria-label="Hauptnavigation">
 
     <div class="logo">
         <div class="logo-icon">N</div>
@@ -689,6 +737,11 @@ body {
                 Ein moderner WhatsApp-Bot für Moderation,
                 Economy, Games, Fun und Gruppenverwaltung.
             </p>
+
+            <div class="hero-actions">
+                <button class="hero-button" type="button" onclick="goCommands()">Commands entdecken</button>
+                <button class="hero-button secondary" type="button" onclick="scrollToInfo()">Mehr über Nova</button>
+            </div>
 
         </div>
 
@@ -1223,7 +1276,7 @@ body {
 
     <!-- ================= INFO ================= -->
 
-    <div class="info-grid">
+    <div class="info-grid" id="info-section">
 
         <div class="info-box">
 
@@ -1264,6 +1317,10 @@ body {
         </div>
 
     </div>
+
+    <footer class="footer">
+        Nova Bot · Für WhatsApp-Gruppen entwickelt · v1.0.0
+    </footer>
 
 </main>
 
@@ -1306,6 +1363,12 @@ function scrollToTop() {
         behavior: "smooth"
     });
 
+}
+
+function scrollToInfo() {
+    document.getElementById("info-section").scrollIntoView({
+        behavior: "smooth"
+    });
 }
 
 
