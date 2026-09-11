@@ -1,1 +1,1 @@
-# N
+skibidi Sigma Aura Pascal 
